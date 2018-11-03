@@ -20,3 +20,11 @@ Route::get('/user/{id}/role',function($id){
     return User::findOrFail($id)->roles;
 
 });
+
+Route::get('/user/{id}/in_role',function($id){
+    $user   =   User::findOrFail($id);
+    // it will add Visitor to Role table and automatic add in role_user table 
+    $user->roles()->save(new Role(['name'=>'Visitor']));
+});
+
+
